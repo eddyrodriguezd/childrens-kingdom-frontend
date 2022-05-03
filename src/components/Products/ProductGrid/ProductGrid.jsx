@@ -2,7 +2,10 @@ import { Container, Row, Col } from 'react-bootstrap';
 import ProductCard from '../ProductCard/ProductCard';
 import { getAllProducts } from '../../../api/products/productsEndpoints';
 
-const ProductGrid = (/*products*/) => {
+const ProductGrid = ({category}) => {
+    const {name} = category;
+    console.log('categoryName', name)
+
     const {loading, data} = getAllProducts();
 
     return (

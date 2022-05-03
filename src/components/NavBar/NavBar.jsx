@@ -1,4 +1,4 @@
-import { Navbar, Container, Nav, OverlayTrigger, Popover, Button } from 'react-bootstrap';
+import { Navbar, Container, Nav, OverlayTrigger, Popover, Tooltip } from 'react-bootstrap';
 import CategoriesGrid from './Categories/CategoriesGrid/CategoriesGrid';
 
 import logo from '../../assets/logo.jpg';
@@ -10,30 +10,36 @@ const NavBar = () => {
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
             <img height='80px' src={logo} alt='logo' />
             <Container>
-                <Navbar.Brand href="#home">Children's Kingdom</Navbar.Brand>
+                <Navbar.Brand href="/">Children's Kingdom</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
                         <OverlayTrigger
-                            trigger="click"
+                            trigger='click'
                             key='bottom'
                             placement='bottom'
                             overlay={
                                 <Popover id={'popover-positioned-bottom'} className='popover'>
-                                        <CategoriesGrid/>
+                                    <CategoriesGrid />
                                 </Popover>
                             }>
                             <Nav.Link>
-                                Categorías 2
+                                Categorías
                             </Nav.Link>
                         </OverlayTrigger>
-                        <Nav.Link href="#features">
-                            Categorías
-                        </Nav.Link>
-                        <Nav.Link href="#pricing">Promociones</Nav.Link>
+                        <OverlayTrigger
+                            key='right'
+                            placement='right'
+                            overlay={
+                                <Tooltip id={'tooltip-right'}>
+                                    <strong>Próximamente</strong>.
+                                </Tooltip>
+                            }>
+                            <Nav.Link>Promociones</Nav.Link>
+                        </OverlayTrigger>
                     </Nav>
                     <Nav>
-                        <Nav.Link href="#memes">Iniciar sesión</Nav.Link>
+                        <Nav.Link href="/login">Iniciar sesión</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

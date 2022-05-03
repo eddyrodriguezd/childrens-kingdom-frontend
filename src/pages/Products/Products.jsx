@@ -1,11 +1,16 @@
-import NavBar from "../../components/NavBar/NavBar";
-import ProductGrid from "../../components/Products/ProductGrid/ProductGrid";
+import { useLocation } from 'react-router-dom';
+import ProductGrid from '../../components/Products/ProductGrid/ProductGrid';
 
 
 const Products = () => {
+    const location = useLocation();
+	if (location.state == null || location.state.category == null)
+		return <Navigate to='/' />;
+    const { category } = location.state;
+
     return (
         <>
-            <ProductGrid />
+            <ProductGrid category={category}/>
         </>
     );
 }

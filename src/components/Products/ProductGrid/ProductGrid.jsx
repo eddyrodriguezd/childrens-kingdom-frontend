@@ -3,7 +3,7 @@ import ProductCard from '../ProductCard/ProductCard';
 import { getAllProducts } from '../../../api/products/productsEndpoints';
 
 const ProductGrid = (/*products*/) => {
-    const {loading, data} = getAllProducts(null);
+    const {loading, data} = getAllProducts();
 
     return (
         <Container style={{ margin: '4rem' }}>

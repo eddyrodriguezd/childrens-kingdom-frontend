@@ -1,23 +1,21 @@
 import { Card, Form, Row, Col, Button } from 'react-bootstrap';
 
-import img from '../../../assets/img_test.jpg';
-
 const ShoppingCartCard = ({ title, image, description, price, quantity }) => {
     return (
-        <Card>
+        <Card style={{margin: '1rem'}}>
             <Card.Body>
                 <Row>
                     <Col xs lg= {3}>
-                        <Card.Img variant="top" src={img} style={{ height: '18rem' }} alt={title} />
+                        <Card.Img variant="top" src={image} style={{ height: '8rem', padding: '2rem' }} alt={title} />
                     </Col>
 
-                    <Col xs lg={7}>
+                    <Col xs lg={6} className='align-self-center'>
                         <Card.Title>{title}</Card.Title>
                         <Card.Text>{description}</Card.Text>
                     </Col>
 
-                    <Col xs lg={1}>
-                        <Form.Select aria-label="Default select example">
+                    <Col xs lg={1} className='align-self-center'>
+                        <Form.Select>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -26,7 +24,7 @@ const ShoppingCartCard = ({ title, image, description, price, quantity }) => {
                         </Form.Select>
                     </Col>
 
-                    <Col xs lg={1}>
+                    <Col xs lg={2} className='align-self-center'>
                         <p>S/. {price}</p>
                     </Col>
                 </Row>

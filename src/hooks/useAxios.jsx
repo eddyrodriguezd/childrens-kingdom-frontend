@@ -6,14 +6,13 @@ const useAxios = (method, endpoint, data, { successCode, successMessage, errorMe
     const [state, setState] = useState({ data: null, loading: true, error: null });
 
     const url = import.meta.env.VITE_BACKEND_ENDPOINT.concat(endpoint);
-    console.log('url', url);
 
     useEffect(() => {
-        console.log('axios being called');
+
+        setState({ data: null, loading: true, error: null });
 
         axios({ method, url, data/*, withCredentials: true*/ })
             .then((response) => {
-                console.log('response', response);
 
                 if (response.status !== successCode) {
                     throw new Error(errorMessage);

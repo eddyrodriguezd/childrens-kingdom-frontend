@@ -1,6 +1,9 @@
-import { Navbar, Container, Nav } from 'react-bootstrap';
+import { Navbar, Container, Nav, OverlayTrigger, Popover, Button } from 'react-bootstrap';
+import CategoriesGrid from './Categories/CategoriesGrid/CategoriesGrid';
 
 import logo from '../../assets/logo.jpg';
+
+import './NavBar.css';
 
 const NavBar = () => {
     return (
@@ -11,7 +14,22 @@ const NavBar = () => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link href="#features">Categorías</Nav.Link>
+                        <OverlayTrigger
+                            trigger="click"
+                            key='bottom'
+                            placement='bottom'
+                            overlay={
+                                <Popover id={'popover-positioned-bottom'} className='popover'>
+                                        <CategoriesGrid/>
+                                </Popover>
+                            }>
+                            <Nav.Link>
+                                Categorías 2
+                            </Nav.Link>
+                        </OverlayTrigger>
+                        <Nav.Link href="#features">
+                            Categorías
+                        </Nav.Link>
                         <Nav.Link href="#pricing">Promociones</Nav.Link>
                     </Nav>
                     <Nav>

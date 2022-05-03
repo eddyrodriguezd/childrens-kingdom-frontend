@@ -1,14 +1,15 @@
 import { Card, ListGroup, Row, Col, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const OrderSummaryCard = (products) => {
 
     const { loading, data } = products.products;
 
-    const productsPrice = data.reduce((n, {price}) => n + price, 0);
+    const productsPrice = !!data && data.reduce((n, { price }) => n + price, 0);
     const deliveryPrice = 7.99;
 
     return (
-        <Card style={{margin: '1rem'}}>
+        <Card style={{ margin: '1rem' }}>
             <Card.Body>
                 <Card.Title>Resumen de tu orden</Card.Title>
                 <ListGroup variant="flush">
@@ -44,8 +45,12 @@ const OrderSummaryCard = (products) => {
                     </ListGroup.Item>
                 </ListGroup>
             </Card.Body>
-            <Button variant="dark">Ir a pagar</Button>
-        </Card>
+            <Link
+                to={'/checkout'}
+                state={{ from: 'the-page-id' }}>
+                <Button variant="dark">Pagar</Button>
+            </Link>
+        </Card >
     );
 }
 

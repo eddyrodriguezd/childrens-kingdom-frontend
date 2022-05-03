@@ -6,7 +6,6 @@ import { getAllProductsByCategory } from '../../api/products/productsEndpoints';
 
 const ShoppingCart = () => {
     const products = getAllProductsByCategory('jewelery');
-    console.log('products:', products);
 
     return (
         <Row xs={1} lg={2}>
@@ -14,7 +13,7 @@ const ShoppingCart = () => {
                 <ShoppingCartGrid products={products}/>
             </Col>
             <Col xs lg={4}>
-                <OrderSummaryCard/>
+                <OrderSummaryCard products={products}/>
             </Col>
         </Row>
     );

@@ -2,7 +2,7 @@ import { Row, Col } from 'react-bootstrap';
 import ShoppingCartCard from '../ShoppingCartCard/ShoppingCartCard';
 
 const ShoppingCartGrid = (products) => {
-    
+
     const {loading, data} = products.products;
 
     return (

@@ -12,7 +12,7 @@ const ShoppingCartGrid = (products) => {
                     <ShoppingCartCard
                         key={item.id}
                         title={item.title}
-                        image={item.image}
+                        image={item.url}
                         description={item.description}
                         price={item.price}
                         colors={item.colors} />

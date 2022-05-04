@@ -5,7 +5,7 @@ import ShoppingCartGrid from '../../components/ShoppingCart/ShoppingCartGrid/Sho
 import { getAllProductsByCategory } from '../../api/products/productsEndpoints';
 
 const ShoppingCart = () => {
-    const products = getAllProductsByCategory('jewelery');
+    const products = getAllProductsByCategory('food');
 
     return (
         <Row xs={1} lg={2}>

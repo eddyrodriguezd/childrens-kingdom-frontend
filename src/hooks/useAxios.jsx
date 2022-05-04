@@ -22,7 +22,7 @@ const useAxios = (method, endpoint, data, { successCode, successMessage, errorMe
                 setState({
                     loading: false,
                     error: null,
-                    data: response.data
+                    data: response.data?.data
                 })
             })
             .catch((err) => {

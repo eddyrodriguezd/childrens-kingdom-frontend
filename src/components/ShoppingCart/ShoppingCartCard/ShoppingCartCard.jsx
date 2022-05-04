@@ -5,11 +5,11 @@ const ShoppingCartCard = ({ title, image, description, price, quantity }) => {
         <Card style={{margin: '1rem'}}>
             <Card.Body>
                 <Row>
-                    <Col xs lg= {3}>
-                        <Card.Img variant="top" src={image} style={{ height: '8rem', padding: '2rem' }} alt={title} />
+                    <Col xs lg= {2}>
+                        <Card.Img variant="top" src={image} style={{ height: '9rem', padding: '2rem' }} alt={title} />
                     </Col>
 
-                    <Col xs lg={6} className='align-self-center'>
+                    <Col xs lg={7} className='align-self-center'>
                         <Card.Title>{title}</Card.Title>
                         <Card.Text>{description}</Card.Text>
                     </Col>

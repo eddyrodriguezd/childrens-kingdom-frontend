@@ -1,9 +1,9 @@
 import { Card, ListGroup, Row, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-const OrderSummaryCard = (products) => {
+const OrderSummaryCard = ({products, showModal}) => {
 
-    const { loading, data } = products.products;
+    const { loading, data } = products;
 
     const productsPrice = !!data && data.reduce((n, { price }) => n + price, 0);
     const deliveryPrice = 7.99;
@@ -45,11 +45,12 @@ const OrderSummaryCard = (products) => {
                     </ListGroup.Item>
                 </ListGroup>
             </Card.Body>
-            <Link
+            {/*<Link
                 to={'/checkout'}
                 state={{ from: 'the-page-id' }}>
                 <Button variant="dark">Pagar</Button>
-            </Link>
+    </Link>*/}
+            <Button variant="dark" onClick={() => showModal(true)}>Pagar</Button>
         </Card >
     );
 }

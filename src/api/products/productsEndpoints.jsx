@@ -1,5 +1,16 @@
 import useAxios from '../../hooks/useAxios';
 
+const createProduct = (product) => {
+
+	const responseOptions = {
+		successCode: 200,
+		successMessage: 'Product successfully created',
+		errorMessage: "Couldn't create product",
+	};
+
+	return useAxios('post', 'products', product, responseOptions);
+};
+
 const getAllProducts = () => {
 
 	const responseOptions = {
@@ -22,4 +33,4 @@ const getAllProductsByCategory = (category) => {
 	return useAxios('get', 'products/category/' + category, null, responseOptions);
 };
 
-export { getAllProducts, getAllProductsByCategory };
+export { createProduct, getAllProducts, getAllProductsByCategory };

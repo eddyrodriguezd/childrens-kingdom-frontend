@@ -1,7 +1,8 @@
-import { Navbar, Container, Nav, OverlayTrigger, Popover, Tooltip } from 'react-bootstrap';
+import { Navbar, Container, Nav, OverlayTrigger, Popover, Tooltip, Button, Badge, Figure } from 'react-bootstrap';
 import CategoriesGrid from './Categories/CategoriesGrid/CategoriesGrid';
 
 import logo from '../../assets/logo.jpg';
+import shoppingCartIcon from '../../assets/shopping_cart_icon.jpg'
 
 import './NavBar.css';
 
@@ -37,6 +38,18 @@ const NavBar = () => {
                             }>
                             <Nav.Link>Promociones</Nav.Link>
                         </OverlayTrigger>
+                    </Nav>
+                    <Nav>
+                        <Nav.Link href="/cart">
+                            <Figure>
+                                <Figure.Image
+                                    width={37}
+                                    height={33}
+                                    alt='Shopping Cart'
+                                    src={shoppingCartIcon}
+                                />
+                            </Figure><Badge bg='warning' text='dark'>9</Badge>
+                        </Nav.Link>
                     </Nav>
                     <Nav>
                         <Nav.Link href="/login">Iniciar sesión</Nav.Link>

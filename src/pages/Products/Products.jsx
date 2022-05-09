@@ -2,7 +2,7 @@ import { useLocation } from 'react-router-dom';
 import ProductGrid from '../../components/Products/ProductGrid/ProductGrid';
 
 
-const Products = () => {
+const Products = ({ cartProducts, setCartProducts}) => {
     const location = useLocation();
 	if (location.state == null || location.state.category == null)
 		return <Navigate to='/' />;
@@ -10,7 +10,7 @@ const Products = () => {
 
     return (
         <>
-            <ProductGrid category={category}/>
+            <ProductGrid category={category} cartProducts={cartProducts} setCartProducts={setCartProducts}/>
         </>
     );
 }

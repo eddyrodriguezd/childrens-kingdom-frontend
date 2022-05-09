@@ -1,9 +1,11 @@
 import { Row, Col } from 'react-bootstrap';
 import ShoppingCartCard from '../ShoppingCartCard/ShoppingCartCard';
 
-const ShoppingCartGrid = (products) => {
+const ShoppingCartGrid = ({products}) => {
 
-    const {loading, data} = products.products;
+    const {loading, data} = products;
+
+    console.log('data:', products);
 
     return (
         <Row xs={1} md={1}>

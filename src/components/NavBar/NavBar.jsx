@@ -6,7 +6,7 @@ import shoppingCartIcon from '../../assets/shopping_cart_icon.jpg'
 
 import './NavBar.css';
 
-const NavBar = () => {
+const NavBar = ({items}) => {
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
             <img height='80px' src={logo} alt='logo' />
@@ -48,7 +48,7 @@ const NavBar = () => {
                                     alt='Shopping Cart'
                                     src={shoppingCartIcon}
                                 />
-                            </Figure><Badge bg='warning' text='dark'>9</Badge>
+                            </Figure><Badge bg='warning' text='dark'>{items}</Badge>
                         </Nav.Link>
                     </Nav>
                     <Nav>

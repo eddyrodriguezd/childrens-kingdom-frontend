@@ -12,7 +12,6 @@ const Payment = ({ products, show, onHide }) => {
 	});
 
 	const { loading, data } = products;
-	console.log('products data:', data);
 
 	//const totalPrice = !!data && data.reduce((n, { price }) => n + price, 0);
 	const totalPrice = 100;
@@ -34,7 +33,6 @@ const Payment = ({ products, show, onHide }) => {
 	useEffect(() => {
 		if (show) {
 			try {
-				console.log('Executing...')
 				const cardForm = mp.cardForm({
 					amount: totalPrice.toString(),
 					autoMount: true,
@@ -84,7 +82,6 @@ const Payment = ({ products, show, onHide }) => {
 							return console.log('Form mounted');
 						},
 						onSubmit: (event) => {
-							console.log('submitted');
 							event.preventDefault();
 							const {
 								paymentMethodId: payment_method_id,

@@ -1,12 +1,24 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import ProductCard from '../ProductCard/ProductCard';
-import { getAllProducts } from '../../../api/products/productsEndpoints';
+import { getAllProductsByCategory } from '../../../api/products/productsEndpoints';
 
-const ProductGrid = ({category}) => {
-    const {name} = category;
-    console.log('categoryName', name)
+const ProductGrid = ({ category, cartProducts, setCartProducts }) => {
+    const { name } = category;
 
-    const {loading, data} = getAllProducts();
+    const { loading, data } = getAllProductsByCategory('food');
+
+    const addProductToCart = (item) => {
+        item = {
+            ...item,
+            quantity: 1
+        }
+        setCartProducts(
+            old => [
+            ...old,
+            item]
+        );
+        console.log(cartProducts);
+    };
 
     return (
         <Container style={{ margin: '4rem' }}>
@@ -22,10 +34,11 @@ const ProductGrid = ({category}) => {
                     <ProductCard
                         key={item.id}
                         title={item.title}
-                        image={item.image}
+                        image={item.url}
                         description={item.description}
                         price={item.price}
                         colors={item.colors}
+                        addProductToCart={addProductToCart}
                     />
                 ))}
             </Row>

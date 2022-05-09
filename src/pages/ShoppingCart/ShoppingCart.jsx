@@ -6,25 +6,25 @@ import ShoppingCartGrid from '../../components/ShoppingCart/ShoppingCartGrid/Sho
 import { getAllProductsByCategory } from '../../api/products/productsEndpoints';
 import Payment from '../../components/Payment/Payment';
 
-const ShoppingCart = () => {
+const ShoppingCart = ({cartProducts}) => {
+    console.log('cp', cartProducts);
+
     const products = getAllProductsByCategory('food');
 
     const [modalShow, setModalShow] = useState(false);
-
-    console.log('modalShow:', modalShow);
 
     return (
         <>
             <Row xs={1} lg={2}>
                 <Col xs lg={8}>
-                    <ShoppingCartGrid products={products} />
+                    <ShoppingCartGrid products={cartProducts} />
                 </Col>
                 <Col xs lg={4}>
-                    <OrderSummaryCard products={products} showModal={setModalShow} />
+                    <OrderSummaryCard products={cartProducts} showModal={setModalShow} />
                 </Col>
             </Row>
             <Payment
-                products={products}
+                products={cartProducts}
                 show={modalShow}
                 onHide={() => setModalShow(false)}
             />

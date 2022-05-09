@@ -1,5 +1,4 @@
 import { Card, ListGroup, Row, Col, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 
 const OrderSummaryCard = ({products, showModal}) => {
 

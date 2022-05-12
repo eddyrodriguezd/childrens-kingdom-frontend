@@ -23,7 +23,8 @@ const NavBar = ({items}) => {
                                 <Popover id={'popover-positioned-bottom'} className='popover'>
                                     <CategoriesGrid />
                                 </Popover>
-                            }>
+                            }
+                            rootClose={true}>
                             <Nav.Link>
                                 Categorías
                             </Nav.Link>

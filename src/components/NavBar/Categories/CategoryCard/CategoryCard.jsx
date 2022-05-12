@@ -4,7 +4,10 @@ import { useNavigate } from 'react-router-dom';
 const CategoryCard = ({ name, icon }) => {
 
 	const navigate = useNavigate();
-    const cardOnClick = () => navigate('/products', { state: { category: {name} } });
+    const cardOnClick = () => {
+        document.body.click();
+        navigate('/products', { state: { category: {name} } });
+    };
 
     return (
         <Card style={{ width: '10rem', marginLeft: '1rem', cursor: "pointer" }} onClick={cardOnClick}>

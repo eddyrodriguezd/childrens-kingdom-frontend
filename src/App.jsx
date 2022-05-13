@@ -18,13 +18,13 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <NavBar items={cartProducts.length}/>
+        <NavBar cartProducts={cartProducts} />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="products" element={<Products cartProducts={cartProducts} setCartProducts={setCartProducts}/>} />
-          <Route path="cart" element={<ShoppingCart cartProducts={cartProducts}/>} />
+          <Route path="/" element={<Home/>} />
+          <Route path="products" element={<Products cartProducts={cartProducts} setCartProducts={setCartProducts} />} />
+          <Route path="cart" element={<ShoppingCart cartProducts={cartProducts} />} />
         </Routes>
-      </BrowserRouter>,
+      </BrowserRouter>
     </div>
   )
 }

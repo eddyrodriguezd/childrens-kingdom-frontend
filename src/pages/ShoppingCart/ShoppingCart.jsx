@@ -6,8 +6,7 @@ import ShoppingCartGrid from '../../components/ShoppingCart/ShoppingCartGrid/Sho
 import { getAllProductsByCategory } from '../../api/products/productsEndpoints';
 import Payment from '../../components/Payment/Payment';
 
-const ShoppingCart = ({cartProducts}) => {
-    console.log('cp', cartProducts);
+const ShoppingCart = ({ cartProducts }) => {
 
     const products = getAllProductsByCategory('food');
 

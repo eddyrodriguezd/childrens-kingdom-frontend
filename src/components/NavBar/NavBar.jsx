@@ -5,15 +5,26 @@ import logo from '../../assets/logo.jpg';
 import shoppingCartIcon from '../../assets/shopping_cart_icon.jpg'
 
 import './NavBar.css';
+import { Link } from 'react-router-dom';
 
-const NavBar = ({items}) => {
+const NavBar = ({ cartProducts }) => {
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
             <img height='80px' src={logo} alt='logo' />
+
             <Container>
-                <Navbar.Brand href="/">Children's Kingdom</Navbar.Brand>
+
+                <Navbar.Brand as={Link}
+                    to={{
+                        pathname: '/',
+                        state: { cartProducts: cartProducts },
+                    }}>
+                    Children's Kingdom
+                </Navbar.Brand>
+
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
+
                     <Nav className="me-auto">
                         <OverlayTrigger
                             trigger='click'
@@ -40,8 +51,13 @@ const NavBar = ({items}) => {
                             <Nav.Link>Promociones</Nav.Link>
                         </OverlayTrigger>
                     </Nav>
+
                     <Nav>
-                        <Nav.Link href="/cart">
+                        <Nav.Link as={Link}
+                            to={{
+                                pathname: '/cart',
+                                state: { cartProducts: cartProducts },
+                            }}>
                             <Figure>
                                 <Figure.Image
                                     width={37}
@@ -49,12 +65,20 @@ const NavBar = ({items}) => {
                                     alt='Shopping Cart'
                                     src={shoppingCartIcon}
                                 />
-                            </Figure><Badge bg='warning' text='dark'>{items}</Badge>
+                            </Figure><Badge bg='warning' text='dark'>{cartProducts.length}</Badge>
                         </Nav.Link>
                     </Nav>
+
                     <Nav>
-                        <Nav.Link href="/login">Iniciar sesión</Nav.Link>
+                        <Nav.Link as={Link}
+                            to={{
+                                pathname: '/login',
+                                state: { cartProducts: cartProducts },
+                            }}>
+                            Iniciar sesión
+                        </Nav.Link>
                     </Nav>
+
                 </Navbar.Collapse>
             </Container>
         </Navbar>

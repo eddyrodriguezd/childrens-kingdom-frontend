@@ -2,10 +2,9 @@ import { Container, Row, Col } from 'react-bootstrap';
 import ProductCard from '../ProductCard/ProductCard';
 import { getAllProductsByCategory } from '../../../api/products/productsEndpoints';
 
-const ProductGrid = ({ category, cartProducts, setCartProducts }) => {
-    const { name } = category;
+const ProductGrid = ({ categoryName, cartProducts, setCartProducts }) => {
 
-    const { loading, data } = getAllProductsByCategory('food');
+    const { loading, data } = getAllProductsByCategory(categoryName);
 
     const addProductToCart = (item) => {
         item = {
@@ -17,7 +16,6 @@ const ProductGrid = ({ category, cartProducts, setCartProducts }) => {
             ...old,
             item]
         );
-        console.log(cartProducts);
     };
 
     return (
@@ -26,6 +24,13 @@ const ProductGrid = ({ category, cartProducts, setCartProducts }) => {
                 {loading && (
                     <div className='alert alert-secondary text-center'>
                         Cargando productos..
+                    </div>
+                )}
+            </Row>
+            <Row>
+                {!loading && data == null && (
+                    <div className='alert alert-danger text-center'>
+                        No hay productos disponibles de esta categoría
                     </div>
                 )}
             </Row>

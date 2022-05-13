@@ -1,20 +1,26 @@
+import { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import ProductCard from '../ProductCard/ProductCard';
 import { getAllProductsByCategory } from '../../../api/products/productsEndpoints';
+import ProductConfirmModal from '../ProductConfirmModal/ProductConfirmModal';
 
 const ProductGrid = ({ categoryName, cartProducts, setCartProducts }) => {
 
     const { loading, data } = getAllProductsByCategory(categoryName);
 
+    const [modalShow, setModalShow] = useState(false);
+    const [item, setItem] = useState({});
+
+    const showModalToConfirmProduct = (item) => {
+        setModalShow(true);
+        setItem(item);
+    }
+
     const addProductToCart = (item) => {
-        item = {
-            ...item,
-            quantity: 1
-        }
         setCartProducts(
             old => [
-            ...old,
-            item]
+                ...old,
+                item]
         );
     };
 
@@ -44,9 +50,17 @@ const ProductGrid = ({ categoryName, cartProducts, setCartProducts }) => {
                         price={item.price}
                         colors={item.colors}
                         addProductToCart={addProductToCart}
+                        showConfirmModal = {showModalToConfirmProduct}
                     />
                 ))}
             </Row>
+
+            <ProductConfirmModal
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+                addProduct = {addProductToCart}
+                item={item}
+            />
         </Container>
     );
 }

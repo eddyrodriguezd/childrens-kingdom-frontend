@@ -2,7 +2,7 @@ import { Card, Button } from 'react-bootstrap';
 
 import './ProductCard.css';
 
-const ProductCard = ({ title, image, description, price, colors, addProductToCart }) => {
+const ProductCard = ({ title, image, description, price, colors, addProductToCart, showConfirmModal }) => {
     return (
         <Card style={{ width: '18rem', margin: '1rem' }}>
             <Card.Img variant="top" src={image} alt={title} />
@@ -17,7 +17,7 @@ const ProductCard = ({ title, image, description, price, colors, addProductToCar
                 </Card.Text>
                 <Button
                     variant="outline-dark"
-                    onClick={() => addProductToCart({ title, image, description, price })}
+                    onClick={() => /*addProductToCart({ title, image, description, price })*/ showConfirmModal({title, image, description, price})}
                 >
                     Agregar al carrito
                 </Button>

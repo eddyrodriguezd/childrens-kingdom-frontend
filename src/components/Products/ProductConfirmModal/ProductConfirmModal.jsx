@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Modal, Button, Col, Row } from 'react-bootstrap';
 
 const ProductConfirmModal = ({ show, onHide, addProduct, item }) => {

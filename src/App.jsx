@@ -5,6 +5,7 @@ import Products from './pages/Products/Products';
 import NavBar from './components/NavBar/NavBar';
 import Home from './pages/Home/Home';
 import ShoppingCart from './pages/ShoppingCart/ShoppingCart';
+import AdminPanel from './pages/Admin/AdminPanel';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
           <Route path="/" element={<Home/>} />
           <Route path="products" element={<Products cartProducts={cartProducts} setCartProducts={setCartProducts} />} />
           <Route path="cart" element={<ShoppingCart cartProducts={cartProducts} />} />
+          <Route path="/admin" element={<AdminPanel/>} />
         </Routes>
       </BrowserRouter>
     </div>

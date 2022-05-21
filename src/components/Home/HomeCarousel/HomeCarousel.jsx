@@ -14,11 +14,10 @@ const HomeCarousel = () => {
                     className="d-block w-100"
                     src={carouselFirstImg}
                     alt="First slide"
-                    style={{height: '35rem'}}
+                    style={{ height: '35rem' }}
                 />
                 <Carousel.Caption>
-                    <h3 className='text-outlined'>First slide label</h3>
-                    <p className='text-outlined'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <h1 className='text-outlined'>¡Bienvenido a Children's Kingdom!</h1>
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item>
@@ -26,11 +25,10 @@ const HomeCarousel = () => {
                     className="d-block w-100"
                     src={carouselSecondImg}
                     alt="Second slide"
-                    style={{height: '35rem'}}
+                    style={{ height: '35rem' }}
                 />
                 <Carousel.Caption>
-                    <h3 className='text-outlined'>Second slide label</h3>
-                    <p className='text-outlined'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <h1 className='text-outlined'>Aquí encontrarás todo lo que necesitas...</h1>
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item>
@@ -38,11 +36,10 @@ const HomeCarousel = () => {
                     className="d-block w-100"
                     src={carouselThirdImg}
                     alt="Third slide"
-                    style={{height: '35rem'}}
+                    style={{ height: '35rem' }}
                 />
                 <Carousel.Caption>
-                    <h3 className='text-outlined'>Third slide label</h3>
-                    <p className='text-outlined'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <h1 className='text-outlined'>para los/as pequeños/as del hogar</h1>
                 </Carousel.Caption>
             </Carousel.Item>
         </Carousel>

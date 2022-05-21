@@ -5,16 +5,11 @@ import { createOrder } from '../../api/orders/orderEndpoints';
 
 import creditCardImg from '../../assets/credit_card.jpg'
 
-const Payment = ({ products, show, onHide }) => {
+const Payment = ({ products, totalPrice, show, onHide }) => {
 
 	const mp = new MercadoPago(import.meta.env.VITE_MERCADO_TOKEN, {
 		locale: 'es-PE',
 	});
-
-	const { loading, data } = products;
-
-	//const totalPrice = !!data && data.reduce((n, { price }) => n + price, 0);
-	const totalPrice = 100;
 	//const navigate = useNavigate();
 
 	/*const [card, setCard] = useState({
@@ -154,7 +149,7 @@ const Payment = ({ products, show, onHide }) => {
 					<Row>
 						<Form.Group as={Col} className="mb-3" controlId='form-checkout__cardNumber'>
 							<Form.Label>Número de la tarjeta</Form.Label>
-							<Form.Control name='cardNumber' placeholder='XXXX XXXX XXXX XXXX' />
+							<Form.Control name='cardNumber' placeholder='1234 5678 9876 5432' />
 						</Form.Group>
 
 						<Form.Group as={Col} className="mb-3" controlId='form-checkout__cardholderName'>
@@ -166,7 +161,7 @@ const Payment = ({ products, show, onHide }) => {
 					<Row>
 						<Form.Group as={Col} className="mb-3" controlId='form-checkout__cardExpirationDate'>
 							<Form.Label>Mes/Año de vencimiento</Form.Label>
-							<Form.Control name='cardExpirationDate' placeholder='XX/XXXX' />
+							<Form.Control name='cardExpirationDate' placeholder='09/2019' />
 						</Form.Group>
 
 						<Form.Group as={Col} className="mb-3" controlId='form-checkout__securityCode'>
@@ -200,7 +195,7 @@ const Payment = ({ products, show, onHide }) => {
 
 						<Form.Group as={Col} className="mb-3" controlId='form-checkout__cardholderEmail'>
 							<Form.Label>Correo Electrónico</Form.Label>
-							<Form.Control name='email' placeholder='John Doe' />
+							<Form.Control name='email' placeholder='john.doe@gmail.com' />
 						</Form.Group>
 					</Row>
 
@@ -211,7 +206,7 @@ const Payment = ({ products, show, onHide }) => {
 					/>
 
 					<Button variant="dark" type="submit">
-						Confirmar y pagar S/. {totalPrice.toString()}
+						Confirmar y pagar S/. {totalPrice.toFixed(2)}
 					</Button>
 				</Form>
 			</Modal.Body>

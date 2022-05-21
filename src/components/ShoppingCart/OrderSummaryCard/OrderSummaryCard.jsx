@@ -1,11 +1,6 @@
 import { Card, ListGroup, Row, Col, Button } from 'react-bootstrap';
 
-const OrderSummaryCard = ({products, showModal}) => {
-
-    const { loading, data } = products;
-
-    const productsPrice = !!data && data.reduce((n, { price }) => n + price, 0);
-    const deliveryPrice = 7.99;
+const OrderSummaryCard = ({productsPrice, deliveryPrice, showModal}) => {
 
     return (
         <Card style={{ margin: '1rem' }}>
@@ -18,7 +13,7 @@ const OrderSummaryCard = ({products, showModal}) => {
                                 Productos
                             </Col>
                             <Col xs lg={4}>
-                                S/. {productsPrice}
+                                S/. {productsPrice.toFixed(2)}
                             </Col>
                         </Row>
                     </ListGroup.Item>
@@ -38,17 +33,12 @@ const OrderSummaryCard = ({products, showModal}) => {
                                 Total
                             </Col>
                             <Col xs lg={4} style={{ fontWeight: 'bold' }}>
-                                S/. {productsPrice + deliveryPrice}
+                                S/. {(productsPrice + deliveryPrice).toFixed(2)}
                             </Col>
                         </Row>
                     </ListGroup.Item>
                 </ListGroup>
             </Card.Body>
-            {/*<Link
-                to={'/checkout'}
-                state={{ from: 'the-page-id' }}>
-                <Button variant="dark">Pagar</Button>
-    </Link>*/}
             <Button variant="dark" onClick={() => showModal(true)}>Pagar</Button>
         </Card >
     );

@@ -1,23 +1,23 @@
 import { Row, Col } from 'react-bootstrap';
 import ShoppingCartCard from '../ShoppingCartCard/ShoppingCartCard';
 
-const ShoppingCartGrid = ({products}) => {
-
-    const {loading, data} = products;
-
-    console.log('data:', products);
+const ShoppingCartGrid = ({products, onUpdatePrice}) => {
+    console.log('cart products:', products);
 
     return (
-        <Row xs={1} md={1}>
-            {data!= null && data.map((item) => (
+        <Row xs lg = {1}>
+            {products!= null && products.map((item) => (
                 <Col>
                     <ShoppingCartCard
                         key={item.id}
+                        id={item.id}
                         title={item.title}
-                        image={item.url}
+                        image={item.image}
                         description={item.description}
                         price={item.price}
-                        colors={item.colors} />
+                        quantity={item.quantity}
+                        colors={item.colors} 
+                        onUpdatePrice={onUpdatePrice}/>
                 </Col>
             ))}
         </Row>

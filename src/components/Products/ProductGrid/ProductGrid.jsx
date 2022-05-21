@@ -4,7 +4,7 @@ import ProductCard from '../ProductCard/ProductCard';
 import { getAllProductsByCategory } from '../../../api/products/productsEndpoints';
 import ProductConfirmModal from '../ProductConfirmModal/ProductConfirmModal';
 
-const ProductGrid = ({ categoryName, cartProducts, setCartProducts }) => {
+const ProductGrid = ({ categoryName, setCartProducts }) => {
 
     const { loading, data } = getAllProductsByCategory(categoryName);
 
@@ -17,6 +17,7 @@ const ProductGrid = ({ categoryName, cartProducts, setCartProducts }) => {
     }
 
     const addProductToCart = (item) => {
+        console.log('additem', item);
         setCartProducts(
             old => [
                 ...old,
@@ -41,24 +42,26 @@ const ProductGrid = ({ categoryName, cartProducts, setCartProducts }) => {
                 )}
             </Row>
             <Row>
-                {data != null && data.map((item) => (
-                    <ProductCard
-                        key={item.id}
-                        title={item.title}
-                        image={item.url}
-                        description={item.description}
-                        price={item.price}
-                        colors={item.colors}
-                        addProductToCart={addProductToCart}
-                        showConfirmModal = {showModalToConfirmProduct}
-                    />
-                ))}
+                {data != null && data.map((item) => {
+                    return (
+                        <ProductCard
+                            key={item._id}
+                            id={item._id}
+                            title={item.title}
+                            image={item.url}
+                            description={item.description}
+                            price={item.price}
+                            colors={item.colors}
+                            showConfirmModal={showModalToConfirmProduct}
+                        />);
+                }
+                )}
             </Row>
 
             <ProductConfirmModal
                 show={modalShow}
                 onHide={() => setModalShow(false)}
-                addProduct = {addProductToCart}
+                addProduct={addProductToCart}
                 item={item}
             />
         </Container>

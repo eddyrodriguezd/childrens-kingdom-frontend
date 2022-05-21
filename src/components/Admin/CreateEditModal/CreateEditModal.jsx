@@ -1,9 +1,24 @@
-import { useState } from 'react';
-import { Modal, Button, Form, Figure } from 'react-bootstrap';
+import { useEffect, useState } from 'react';
+import { Modal, Button, Form, Figure, Row, Col } from 'react-bootstrap';
 
-const CreateEditModal = ({ show, onHide, saveProduct, item }) => {
+const CreateEditModal = ({ show, onHide, saveProduct, item, file, setFile }) => {
 
     const [formItem, setFormItem] = useState(item);
+
+    const onButtonClick = (e) => {
+        e.preventDefault();
+        document.getElementById('getFile').click();
+    };
+
+    const onFileUpload = (e) => {
+        console.log("yeeeh");
+        console.log(e.target.files);
+        setFile(URL.createObjectURL(e.target.files[0]));
+    }
+
+    useEffect(() => {
+        console.log("file", file);
+    }, file);
 
     const onSaveClick = () => {
         if (item.description != formItem.description && item.price != formItem.price) {
@@ -35,18 +50,25 @@ const CreateEditModal = ({ show, onHide, saveProduct, item }) => {
                         <Form.Control defaultValue={item?.title} />
                     </Form.Group>
                     <Form.Group className='mb-3' controlId='img'>
-                        <Form.Label>Imagen:</Form.Label>
-                        <Figure style={{paddingRight: '1rem', paddingLeft: '1rem'}}>
-                            <Figure.Image
-                                width={200}
-                                height={200}
-                                alt={item?.title}
-                                src={item?.image}
-                            />
-                        </Figure>
-                        <Button variant="primary" onClick={onSaveClick}>
-                            {item == null ? "Añadir imagen" : "Modificar imagen"}
-                        </Button>
+                        <Row style={{ margin: 'auto' }}>
+                            <Col style={{ margin: 'auto' }}>
+                                <Form.Label>Imagen:</Form.Label>
+                                <Figure style={{ paddingRight: '1rem', paddingLeft: '1rem' }}>
+                                    <Figure.Image
+                                        width={200}
+                                        height={200}
+                                        alt={item?.title}
+                                        src={file == null ? item?.image: file}
+                                    />
+                                </Figure>
+                            </Col>
+                            <Col style={{ margin: 'auto' }}>
+                                <Button type='file' variant="primary" onClick={(e) => onButtonClick(e)}>
+                                    {item == null ? "Añadir imagen" : "Modificar imagen"}
+                                </Button>
+                                <input id='getFile' type='file' style={{display:'none'}} onChange={(e) => onFileUpload(e)}></input>
+                            </Col>
+                        </Row>
                     </Form.Group>
                     <Form.Group className='mb-3' controlId='description'>
                         <Form.Label>Descripción</Form.Label>

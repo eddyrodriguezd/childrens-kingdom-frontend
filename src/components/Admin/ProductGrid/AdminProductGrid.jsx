@@ -2,19 +2,10 @@ import { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import ProductCreateEditCard from '../ProductCreateEditCard/ProductCreateEditCard';
 import { getAllProductsByCategory } from '../../../api/products/productsEndpoints';
-import CreateEditModal from '../CreateEditModal/CreateEditModal';
 
-const AdminProductGrid = ({ cartProducts, setCartProducts }) => {
+const AdminProductGrid = ({ cartProducts, setCartProducts, showModalToEdit }) => {
 
     const { loading, data } = getAllProductsByCategory("food");
-
-    const [modalShow, setModalShow] = useState(false);
-    const [item, setItem] = useState({});
-
-    const showModalToCreateOrEdit = (item) => {
-        setModalShow(true);
-        setItem(item);
-    }
 
     return (
         <Container style={{ paddingLeft: '3rem', paddingRight: '3rem' }}>
@@ -35,16 +26,10 @@ const AdminProductGrid = ({ cartProducts, setCartProducts }) => {
                             description={item.description}
                             price={item.price}
                             colors={item.colors} 
-                            showModal = {showModalToCreateOrEdit}/>
+                            showModal = {showModalToEdit}/>
                     </Col>
                 ))}
             </Row>
-
-            <CreateEditModal
-                show={modalShow}
-                onHide={() => setModalShow(false)}
-                item={item}
-            />
         </Container>
     );
 }

@@ -1,13 +1,12 @@
 import useAxios from '../../hooks/useAxios';
 
 const createProduct = (product) => {
-
 	const responseOptions = {
 		successCode: 200,
 		successMessage: 'Product successfully created',
 		errorMessage: "Couldn't create product",
 	};
-
+	
 	return useAxios('post', 'products', product, responseOptions);
 };
 

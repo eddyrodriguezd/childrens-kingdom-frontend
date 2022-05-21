@@ -1,11 +1,10 @@
-import { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import ProductCreateEditCard from '../ProductCreateEditCard/ProductCreateEditCard';
-import { getAllProductsByCategory } from '../../../api/products/productsEndpoints';
+import { getAllProducts } from '../../../api/products/productsEndpoints';
 
-const AdminProductGrid = ({ cartProducts, setCartProducts, showModalToEdit }) => {
+const AdminProductGrid = ({ showModalToEdit, productNameFilter }) => {
 
-    const { loading, data } = getAllProductsByCategory("food");
+    const { loading, data } = getAllProducts();
 
     return (
         <Container style={{ paddingLeft: '3rem', paddingRight: '3rem' }}>
@@ -17,18 +16,20 @@ const AdminProductGrid = ({ cartProducts, setCartProducts, showModalToEdit }) =>
                 )}
             </Row>
             <Row>
-                {data != null && data.map((item) => (
-                    <Col xs lg={12}>
-                        <ProductCreateEditCard
-                            key={item.id}
-                            title={item.title}
-                            image={item.url}
-                            description={item.description}
-                            price={item.price}
-                            colors={item.colors} 
-                            showModal = {showModalToEdit}/>
-                    </Col>
-                ))}
+                {data != null && data
+                    .filter((item) => item.title.toLowerCase().includes(productNameFilter))
+                    .map((item) =>
+                        <Col xs lg={12}>
+                            <ProductCreateEditCard
+                                key={item.id}
+                                title={item.title}
+                                image={item.url}
+                                description={item.description}
+                                price={item.price}
+                                colors={item.colors}
+                                showModal={showModalToEdit} />
+                        </Col>
+                    )}
             </Row>
         </Container>
     );

@@ -12,17 +12,12 @@ function App() {
 
   const [cartProducts, setCartProducts] = useState([]);
 
-  useEffect(() => {
-    console.log('Cart changed');
-    console.log('PRODUCTS:', cartProducts);
-  }, [cartProducts]);
-
   return (
     <div className="App">
       <BrowserRouter>
         <NavBar cartProducts={cartProducts} />
         <Routes>
-          <Route path="/" element={<Home/>} />
+          <Route path="/" element={<Home setCartProducts={setCartProducts}/>} />
           <Route path="products" element={<Products cartProducts={cartProducts} setCartProducts={setCartProducts} />} />
           <Route path="cart" element={<ShoppingCart cartProducts={cartProducts} />} />
           <Route path="/admin" element={<AdminPanel/>} />

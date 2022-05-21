@@ -46,16 +46,15 @@ const CreateEditModal = ({ show, onHide, item, file, setFile, formItem, setFormI
         productFormData.append('category', formItem.category == null ? item.category : formItem.category);
 
         const url = import.meta.env.VITE_BACKEND_ENDPOINT.concat('products');
-
         axios({
             method: 'post', url, data: productFormData,
             headers: { 'Content-Type': 'multipart/form-data' }, /*, withCredentials: true*/
         })
             .then((response) => {
                 if (response.status !== 200) {
-                    throw new Error(errorMessage);
+                    throw new Error('Bad request');
                 }
-                console.log('Successful save');
+                console.log('Product successfully created');
             })
             .catch((err) => {
                 console.log('Oops!', err);

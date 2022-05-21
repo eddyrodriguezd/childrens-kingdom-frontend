@@ -1,29 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { Modal, Form, Button, Figure, Row, Col } from 'react-bootstrap';
-import { createOrder } from '../../api/orders/orderEndpoints';
-//import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import creditCardImg from '../../assets/credit_card.jpg'
+import axios from 'axios';
 
 const Payment = ({ products, totalPrice, show, onHide }) => {
 
+	const navigate = useNavigate();
 	const mp = new MercadoPago(import.meta.env.VITE_MERCADO_TOKEN, {
 		locale: 'es-PE',
 	});
-	//const navigate = useNavigate();
 
-	/*const [card, setCard] = useState({
-		cvc: '',
-		expiry: '',
-		focus: '',
-		name: '',
-		number: '',
-	});
-
-	const handleInputChange = (e) => {
-		const { name, value } = e.target;
-		setCard({ ...card, [name]: value });
-	};*/
+	const onOrderCreatedSuccess = () => {
+		navigate('/', { state: { status: 'ORDER_CREATED' } });
+	}
 
 	useEffect(() => {
 		if (show) {
@@ -91,7 +82,8 @@ const Payment = ({ products, totalPrice, show, onHide }) => {
 
 							const order = {
 								totalPrice: 100,
-								products: products.map(p => p.id),
+								products,
+								//products: products.map(p => p.id),
 								payment: {
 									token,
 									payer: {
@@ -102,10 +94,23 @@ const Payment = ({ products, totalPrice, show, onHide }) => {
 										},
 									},
 									installments: Number(installments),
+									type: 'DEBIT/CREDIT CARD'
 								}
 							};
 							console.log(`The following order <${JSON.stringify(order)} will be created`);
-							createOrder(order);
+							
+							const url = import.meta.env.VITE_BACKEND_ENDPOINT.concat('orders');
+							axios({ method: 'post', url, data:order/*, withCredentials: true*/ })
+								.then((response) => {
+									if (response.status !== 200) {
+										throw new Error('Bad request');
+									}
+									console.log('Order successfully created');
+									onOrderCreatedSuccess();
+								})
+								.catch((err) => {
+									console.log('Oops', err);
+								});
 						},
 						onFetching: (resource) => {
 							console.log('Fetching resource: ', resource);

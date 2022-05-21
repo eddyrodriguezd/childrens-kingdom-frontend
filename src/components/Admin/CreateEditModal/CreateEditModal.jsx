@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Modal, Button, Col, Row, Form, Figure } from 'react-bootstrap';
+import { Modal, Button, Form, Figure } from 'react-bootstrap';
 
 const CreateEditModal = ({ show, onHide, saveProduct, item }) => {
 
